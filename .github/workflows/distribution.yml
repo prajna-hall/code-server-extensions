@@ -19,11 +19,15 @@ jobs:
            sudo tar zxf /code-server-3.9.1-linux-amd64.tar.gz --strip-components 1 -C /usr/local/code-server &&
            sudo mkdir -p /usr/local/code-server-extensions &&
            sudo mkdir -p /usr/local/code-server-users &&
-           sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --install-extension ms-python.python MS-CEINTL.vscode-language-pack-zh-hans &&
+           sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --install-extension ms-python.python &&
+           sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --install-extension MS-CEINTL.vscode-language-pack-zh-hans &&
+           echo "---------" &&
            sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --list-extensions --show-versions &&
            sudo ls -lh /usr/local/code-server-users &&
            sudo ls -lh /usr/local/code-server-users/CachedExtensionVSIXs &&
+           echo "+++++++++" &&
            sudo ls -lh /usr/local/code-server-users/User &&
+           echo "*********" &&
            sudo ls -lh /usr/local/code-server &&
            sudo tar zcpf /usr/local/code-server-extensions.tar.gz -C /usr/local code-server-extensions &&
            sudo chmod 777 /usr/local/code-server-extensions.tar.gz &&
