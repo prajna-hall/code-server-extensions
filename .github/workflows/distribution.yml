@@ -14,21 +14,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Build
-      run: sudo mkdir -p /usr/local/code-server && \
-           cd / && sudo wget https://github.com/cdr/code-server/releases/download/v3.9.1/code-server-3.9.1-linux-amd64.tar.gz && \
-           sudo ls -lh / && \
-           sudo tar zxf /code-server-3.9.1-linux-amd64.tar.gz --strip-components 1 -C /usr/local/code-server && \
-           sudo mkdir -p /usr/local/code-server-extensions && \
-           sudo mkdir -p /usr/local/code-server-users && \
-           sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --install-extension ms-python.python MS-CEINTL.vscode-language-pack-zh-hans && \
-           sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --list-extensions --show-versions && \
-           sudo ls -lh /usr/local/code-server-users && \
-           sudo ls -lh /usr/local/code-server-users/CachedExtensionVSIXs && \
-           sudo ls -lh /usr/local/code-server-users/User && \
-           sudo ls -lh /usr/local/code-server && \
-           sudo tar zcpf /usr/local/code-server-extensions.tar.gz -C /usr/local code-server-extensions && \
-           sudo chmod 777 /usr/local/code-server-extensions.tar.gz && \
-           sudo ls -lh /usr/local && \
+      run: sudo mkdir -p /usr/local/code-server &&
+           cd / && sudo wget https://github.com/cdr/code-server/releases/download/v3.9.1/code-server-3.9.1-linux-amd64.tar.gz &&
+           sudo ls -lh / &&
+           sudo tar zxf /code-server-3.9.1-linux-amd64.tar.gz --strip-components 1 -C /usr/local/code-server &&
+           sudo mkdir -p /usr/local/code-server-extensions &&
+           sudo mkdir -p /usr/local/code-server-users &&
+           sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --install-extension ms-python.python MS-CEINTL.vscode-language-pack-zh-hans &&
+           sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --list-extensions --show-versions &&
+           sudo ls -lh /usr/local/code-server-users &&
+           sudo ls -lh /usr/local/code-server-users/CachedExtensionVSIXs &&
+           sudo ls -lh /usr/local/code-server-users/User &&
+           sudo ls -lh /usr/local/code-server &&
+           sudo tar zcpf /usr/local/code-server-extensions.tar.gz -C /usr/local code-server-extensions &&
+           sudo chmod 777 /usr/local/code-server-extensions.tar.gz &&
+           sudo ls -lh /usr/local
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
