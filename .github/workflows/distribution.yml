@@ -31,10 +31,12 @@ jobs:
     - run: sudo tar zxf /code-server-3.9.1-linux-amd64.tar.gz --strip-components 1 -C /usr/local/code-server
     - run: sudo mkdir -p /usr/local/code-server-extensions
     - run: sudo mkdir -p /usr/local/code-server-users
-    - run: sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --install-extension ms-python.python
+    - run: sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --install-extension ms-python.python MS-CEINTL.vscode-language-pack-zh-hans
     - run: sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --list-extensions --show-versions
     - run: sudo ls -lh /usr/local/code-server-users
     - run: sudo ls -lh /usr/local/code-server-users/CachedExtensionVSIXs
     - run: sudo ls -lh /usr/local/code-server-users/User
     - run: sudo ls -lh /usr/local/code-server
+    - run: sudo tar zcpf /usr/local/code-server-extensions.tar.gz /usr/local/code-server-extensions
+    - run: sudo ls -lh /usr/local
 
