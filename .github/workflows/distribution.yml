@@ -23,7 +23,6 @@ jobs:
            sudo mkdir -p /usr/local/code-server-bundles &&
            sudo /bin/cp -rf /usr/local/code-server-users/languagepacks.json /usr/local/code-server-bundles/ &&
            sudo /bin/cp -rf /usr/local/code-server-extensions /usr/local/code-server-bundles/ &&
-           sudo tar zcpf /usr/local/code-server-bundles/code-server-extensions.tar.gz -C /usr/local code-server-extensions &&
            sudo tar zcpf /usr/local/code-server-bundles.tar.gz -C /usr/local code-server-bundles &&
            sudo chmod 777 /usr/local/code-server-bundles.tar.gz
     - name: Release
