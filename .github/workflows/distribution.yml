@@ -30,7 +30,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: /usr/local/code-server-extensions.tar.gz
+        files: /usr/local/code-server-bundles.tar.gz
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
