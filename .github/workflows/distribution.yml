@@ -28,5 +28,5 @@ jobs:
     - run: sudo mkdir -p /usr/local/code-server
     - run: cd / && sudo wget https://github.com/cdr/code-server/releases/download/v3.9.1/code-server-3.9.1-linux-amd64.tar.gz
     - run: sudo ls -l /
-    - run: sudo tar zxvf code-server-3.9.1-linux-amd64.tar.gz -C /usr/local/code-server
+    - run: sudo tar zxvf /code-server-3.9.1-linux-amd64.tar.gz -C /usr/local/code-server
     - run: sudo ls -l /usr/local/code-server
