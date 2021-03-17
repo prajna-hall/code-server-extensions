@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: code-server-bundle CI
 
 on:
   push:
@@ -12,32 +12,28 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [15.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - name: Build
+      run: sudo mkdir -p /usr/local/code-server && \
+           cd / && sudo wget https://github.com/cdr/code-server/releases/download/v3.9.1/code-server-3.9.1-linux-amd64.tar.gz && \
+           sudo ls -lh / && \
+           sudo tar zxf /code-server-3.9.1-linux-amd64.tar.gz --strip-components 1 -C /usr/local/code-server && \
+           sudo mkdir -p /usr/local/code-server-extensions && \
+           sudo mkdir -p /usr/local/code-server-users && \
+           sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --install-extension ms-python.python MS-CEINTL.vscode-language-pack-zh-hans && \
+           sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --list-extensions --show-versions && \
+           sudo ls -lh /usr/local/code-server-users && \
+           sudo ls -lh /usr/local/code-server-users/CachedExtensionVSIXs && \
+           sudo ls -lh /usr/local/code-server-users/User && \
+           sudo ls -lh /usr/local/code-server && \
+           sudo tar zcpf /usr/local/code-server-extensions.tar.gz -C /usr/local code-server-extensions && \
+           sudo chmod 777 /usr/local/code-server-extensions.tar.gz && \
+           sudo ls -lh /usr/local && \
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: sudo mkdir -p /usr/local/code-server
-    - run: cd / && sudo wget https://github.com/cdr/code-server/releases/download/v3.9.1/code-server-3.9.1-linux-amd64.tar.gz
-    - run: sudo ls -lh /
-    - run: sudo tar zxf /code-server-3.9.1-linux-amd64.tar.gz --strip-components 1 -C /usr/local/code-server
-    - run: sudo mkdir -p /usr/local/code-server-extensions
-    - run: sudo mkdir -p /usr/local/code-server-users
-    - run: sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --install-extension ms-python.python MS-CEINTL.vscode-language-pack-zh-hans
-    - run: sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --list-extensions --show-versions
-    - run: sudo ls -lh /usr/local/code-server-users
-    - run: sudo ls -lh /usr/local/code-server-users/CachedExtensionVSIXs
-    - run: sudo ls -lh /usr/local/code-server-users/User
-    - run: sudo ls -lh /usr/local/code-server
-    - run: sudo tar zcpf /usr/local/code-server-extensions.tar.gz -C /usr/local code-server-extensions
-    - run: sudo chmod 777 /usr/local/code-server-extensions.tar.gz
-    - run: sudo ls -lh /usr/local
-    - uses: actions/upload-artifact@v2
-      with:
-       path: /usr/local/code-server-extensions.tar.gz
+        files: /usr/local/code-server-extensions.tar.gz
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
