@@ -37,6 +37,6 @@ jobs:
     - run: sudo ls -lh /usr/local/code-server-users/CachedExtensionVSIXs
     - run: sudo ls -lh /usr/local/code-server-users/User
     - run: sudo ls -lh /usr/local/code-server
-    - run: sudo tar zcpf /usr/local/code-server-extensions.tar.gz /usr/local/code-server-extensions
+    - run: sudo tar zcpf /usr/local/code-server-extensions.tar.gz -C /usr/local code-server-extensions
     - run: sudo ls -lh /usr/local
 
