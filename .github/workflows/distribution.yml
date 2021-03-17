@@ -29,4 +29,10 @@ jobs:
     - run: cd / && sudo wget https://github.com/cdr/code-server/releases/download/v3.9.1/code-server-3.9.1-linux-amd64.tar.gz
     - run: sudo ls -l /
     - run: sudo tar zxvf /code-server-3.9.1-linux-amd64.tar.gz --strip-components 1 -C /usr/local/code-server
+    - run: sudo mkdir -p /usr/local/code-server-extensions
+    - run: sudo mkdir -p /usr/local/code-server-users
+    - run: sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --install-extension ms-python.python
+    - run: sudo /usr/local/code-server/bin/code-server --extensions-dir /usr/local/code-server-extensions --user-data-dir /usr/local/code-server-users --list-extensions
+    - run: sudo ls -l /usr/local/code-server-users
     - run: sudo ls -l /usr/local/code-server
+
