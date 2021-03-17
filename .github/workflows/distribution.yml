@@ -11,14 +11,11 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [15.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -38,5 +35,9 @@ jobs:
     - run: sudo ls -lh /usr/local/code-server-users/User
     - run: sudo ls -lh /usr/local/code-server
     - run: sudo tar zcpf /usr/local/code-server-extensions.tar.gz -C /usr/local code-server-extensions
+    - run: sudo chmod 777 /usr/local/code-server-extensions.tar.gz
     - run: sudo ls -lh /usr/local
+    - uses: actions/upload-artifact@v2
+      with:
+       path: /usr/local/code-server-extensions.tar.gz
 
