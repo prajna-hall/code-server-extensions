@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if [[ $# -ne 1 ]];then
+  echo "ERROR: input args not equal 1!"
+  exit 1
+fi
+
+GITHUB_WORKSPACE="$1"
+
 echo "INFO: start build..."
 echo "INFO: work space dir: $GITHUB_WORKSPACE"
 mkdir -p /usr/local/code-server
