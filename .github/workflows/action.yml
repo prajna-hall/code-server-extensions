@@ -11,7 +11,7 @@ jobs:
     - name: Build
       run: |
         echo "Action: Run Build and GITHUB_WORKSPACE env: $GITHUB_WORKSPACE"
-        sudo /bin/bash $GITHUB_WORKSPACE/build.sh
+        sudo /bin/bash $GITHUB_WORKSPACE/build.sh $GITHUB_WORKSPACE
         echo "Action: Run Build finished."
     - name: Release
       uses: softprops/action-gh-release@v1
