@@ -1,0 +1,22 @@
+name: github actions for release
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Build
+      run: |
+        echo "Action: Run Build and GITHUB_WORKSPACE env: $GITHUB_WORKSPACE"
+        sudo /bin/bash $GITHUB_WORKSPACE/build.sh
+        echo "Action: Run Build finished."
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: $GITHUB_WORKSPACE/target/code-server-extensions-3.9.1.tar.gz
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
