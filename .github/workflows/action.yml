@@ -17,6 +17,8 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: $GITHUB_WORKSPACE/target/code-server-extensions-3.9.1.tar.gz
+        files: $GITHUB_WORKSPACE/target/$FINAL_NAME.tar.gz
       env:
+        GITHUB_WORKSPACE: $GITHUB_WORKSPACE
+        FINAL_NAME: code-server-extensions-3.9.1
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
