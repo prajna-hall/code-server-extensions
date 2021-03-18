@@ -14,7 +14,7 @@ mkdir -p /usr/local/code-server
 mkdir -p /usr/local/code-server-extensions
 mkdir -p /usr/local/code-server-users
 
-kdir -p /tmp
+mkdir -p /tmp
 wget -P /tmp https://github.com/cdr/code-server/releases/download/v3.9.1/code-server-3.9.1-linux-amd64.tar.gz
 tar zxf /tmp/code-server-3.9.1-linux-amd64.tar.gz --strip-components 1 -C /usr/local/code-server
 
