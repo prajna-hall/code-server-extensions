@@ -18,7 +18,5 @@ jobs:
     - name: Build
       run: |
         echo "Action: Run Build and GITHUB_WORKSPACE env: $GITHUB_WORKSPACE"
-        sudo /bin/bash $GITHUB_WORKSPACE/build.sh $GITHUB_WORKSPACE
+        sudo /bin/bash $GITHUB_WORKSPACE/build.sh $GITHUB_WORKSPACE ${{ env.code_server_version }}
         echo "Action: Run Build finished."
-      env:
-        CODE_SERVER_VERSION: ${{ env.code_server_version }}
