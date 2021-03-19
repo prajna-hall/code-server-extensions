@@ -26,8 +26,11 @@ tar zxf /tmp/code-server-3.9.1-linux-amd64.tar.gz --strip-components 1 -C /usr/l
   --install-extension ahmadawais.shades-of-purple \
   --install-extension pkief.material-icon-theme \
   --install-extension eamodio.gitlens \
-  --install-extension donjayamanne.python-extension-pack
-
+  --install-extension donjayamanne.python-extension-pack \
+  --install-extension vscjava.vscode-java-pack \
+  --install-extension SonarSource.sonarlint-vscode \
+  --install-extension scala-lang.scala \
+  --install-extension scala-lang.scala-snippets
 
 echo "INFO: all extensions install finished."
 
