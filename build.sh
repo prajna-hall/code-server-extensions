@@ -44,6 +44,7 @@ ls -lh /usr/local/code-server-users
 echo "INFO: ls -lh /usr/local/code-server-users/User"
 ls -lh /usr/local/code-server-users/User
 
+
 #output
 FINAL_NAME=code-server-extensions-3.9.1
 TARGET_DIR=$GITHUB_WORKSPACE/target
