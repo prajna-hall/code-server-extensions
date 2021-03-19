@@ -8,7 +8,7 @@ set -euo pipefail
 
 GITHUB_WORKSPACE="${1}"
 CODE_SERVER_VERSION="${2}"
-VERSION="${3:-''}"
+VERSION="${3:-}"
 if [[ ${VERSION} != "" ]]; then
   echo "INFO: VERSION: ${VERSION}"
 fi
