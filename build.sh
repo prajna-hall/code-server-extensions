@@ -6,11 +6,16 @@ if [[ $# -ne 1 ]];then
   exit 1
 fi
 
-GITHUB_WORKSPACE="$1"
+GITHUB_WORKSPACE="${1}"
+CODE_SERVER_VERSION="${2}"
+VERSION="${3:-''}"
+if [[ ${VERSION} != "" ]]; then
+  echo "INFO: VERSION: ${VERSION}"
+fi
 
 echo "INFO: start build..."
 echo "INFO: CODE_SERVER_VERSION: ${CODE_SERVER_VERSION}"
-echo "INFO: VERSION: ${VERSION}"
+
 echo "INFO: work space dir: ${GITHUB_WORKSPACE}"
 mkdir -p /usr/local/code-server
 mkdir -p /usr/local/code-server-extensions
@@ -47,9 +52,7 @@ echo "INFO: ls -lh /usr/local/code-server-users/User"
 ls -lh /usr/local/code-server-users/User
 
 
-if [[ -z ${VERSION} ]]; then
-  echo "INFO: build for ci finished."
-else
+if [[ ${VERSION} != "" ]]; then
   #output
   FINAL_NAME=code-server-v${CODE_SERVER_VERSION}-extensions-${VERSION}
   TARGET_DIR=$GITHUB_WORKSPACE/target
@@ -66,4 +69,6 @@ else
   echo "INFO: ls -lh ${TARGET_DIR}"
   ls -lh ${TARGET_DIR}
   echo "INFO: build for release finished."
+else
+    echo "INFO: build for ci finished."
 fi
