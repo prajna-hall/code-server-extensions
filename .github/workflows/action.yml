@@ -1,6 +1,9 @@
 name: github actions for release
 
-on: push
+on:
+  push:
+    tags:
+      - 'v*.*.*'
 
 jobs:
   build:
@@ -30,6 +33,13 @@ jobs:
       env:
         MATRIX_CONTEXT: ${{ toJSON(matrix) }}
       run: echo "$MATRIX_CONTEXT"
+    - name: Get version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    - name: Debug version
+      env:
+        VERSION: ${{ steps.get_version.outputs.VERSION }}
+      run: echo "$VERSION"
     # - name: Checkout
     #   uses: actions/checkout@v2
     # - name: Build
