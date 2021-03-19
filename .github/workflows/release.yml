@@ -1,0 +1,38 @@
+name: Release Action
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Regist code-server version
+      id: code_server_version
+      run: |
+        code_server_version=$(cat CODE_SERVER_VERSION)
+        echo "code_server_version=${code_server_version}" >> $GITHUB_ENV
+
+    - name: Build
+      run: |
+        echo "Action: Run Build and GITHUB_WORKSPACE env: $GITHUB_WORKSPACE"
+        sudo /bin/bash $GITHUB_WORKSPACE/build.sh $GITHUB_WORKSPACE
+        echo "Action: Run Build finished."
+      env:
+        CODE_SERVER_VERSION: ${{ env.code_server_version }}
+        VERSION: ${{ steps.get_version.outputs.VERSION }}
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: target/code-server-v${{ env.code_server_version }}-extensions-${{ steps.get_version.outputs.VERSION }}.tar.gz
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
