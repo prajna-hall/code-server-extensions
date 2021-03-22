@@ -36,7 +36,10 @@ tar zxf /tmp/code-server-${CODE_SERVER_VERSION}-linux-amd64.tar.gz --strip-compo
   --install-extension donjayamanne.python-extension-pack \
   --install-extension vscjava.vscode-java-pack \
   --install-extension SonarSource.sonarlint-vscode \
-  --install-extension scala-lang.scala
+  --install-extension redhat.vscode-xml \
+  --install-extension scala-lang.scala \
+  --install-extension VisualStudioExptTeam.vscodeintellicode \
+  --install-extension formulahendry.code-runner
 
 echo "INFO: all extensions install finished."
 
