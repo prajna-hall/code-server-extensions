@@ -33,13 +33,13 @@ tar zxf /tmp/code-server-${CODE_SERVER_VERSION}-linux-amd64.tar.gz --strip-compo
   --install-extension ahmadawais.shades-of-purple \
   --install-extension pkief.material-icon-theme \
   --install-extension eamodio.gitlens \
+  --install-extension EditorConfig.EditorConfig \
   --install-extension donjayamanne.python-extension-pack \
   --install-extension vscjava.vscode-java-pack \
   --install-extension SonarSource.sonarlint-vscode \
   --install-extension redhat.vscode-xml \
   --install-extension scala-lang.scala \
-  --install-extension scalameta.metals \
-  --install-extension formulahendry.code-runner
+  --install-extension scalameta.metals
 
 echo "INFO: all extensions install finished."
 
