@@ -33,13 +33,20 @@ tar zxf /tmp/code-server-${CODE_SERVER_VERSION}-linux-amd64.tar.gz --strip-compo
   --install-extension ahmadawais.shades-of-purple \
   --install-extension pkief.material-icon-theme \
   --install-extension eamodio.gitlens \
-  --install-extension EditorConfig.EditorConfig \
   --install-extension donjayamanne.python-extension-pack \
   --install-extension vscjava.vscode-java-pack \
   --install-extension SonarSource.sonarlint-vscode \
   --install-extension redhat.vscode-xml \
+  --install-extension redhat.vscode-yaml \
+  --install-extension bungcip.better-toml \
   --install-extension scala-lang.scala \
-  --install-extension scalameta.metals
+  --install-extension scalameta.metals \
+  --install-extension aaron-bond.better-comments \
+  --install-extension yzhang.markdown-all-in-one \
+  --install-extension goessner.mdmath \
+  --install-extension coenraads.bracket-pair-colorizer-2 \
+  --install-extension editorconfig.editorconfig \
+  --install-extension streetsidesoftware.code-spell-checker
 
 echo "INFO: all extensions install finished."
 
